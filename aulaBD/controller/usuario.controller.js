@@ -6,7 +6,10 @@ exports.listarUsuarios = async function(){
 }
 
 exports.criarUsuario = async function(novo_usuario){
-    if(usuarioRN.validarUsername(novo_usuario.username)){
+    if(usuarioRN.validarUsername(novo_usuario.username) && (usuarioRN.validarSenha(novo_usuario.senha))){
+        if( novo_usuario.username in usuarioDAO.listarUsuarios()){
+            return false;
+        }
         await usuarioDAO.criarUsuario(novo_usuario);
         return true;
     }

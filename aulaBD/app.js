@@ -33,7 +33,7 @@ app.post('/cadastrarUsuario', function(req, res){
     {resp ? res.redirect('/listarUsuarios') : 
       res.render('cadastroUsuario', 
         {usuario: novo_usuario, mensagem: 
-          "Erro: username deve ter entre 5 e 10 caracteres!"})})
+          "Erro: Seu username deve ter entre 5 e 10 caracteres! ou sua senha é fraca de mais"})})
 
 });
 
