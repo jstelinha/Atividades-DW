@@ -30,7 +30,7 @@ app.get('/listarUsuarios', function (req, res) {
 });
 
 app.get('/cadastrarUsuario', function (req, res) {
-  email('jstela.aluno@gmail.com', 'Assunto email', 'Funcionou');
+  email('email', 'Assunto email', 'Funcionou');
   res.render('cadastroUsuario');
 });
 
@@ -44,7 +44,7 @@ app.post('/cadastrarUsuario', function (req, res) {
       res.redirect('/listarUsuarios');
     }
   });
-  
+
 });
 
 app.post('/removerUsuario', function(req, res){
