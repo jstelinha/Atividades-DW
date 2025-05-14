@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const usuarioController = require('./controller/usuario.controller');
 const usuario = require('./entidades/usuario');
+const email = require('./config/email');
 
 //Configuração do Handlebars (necessário a partir da rota #2)
 //Informa ao express qual template engine será usado
@@ -29,21 +30,21 @@ app.get('/listarUsuarios', function (req, res) {
 });
 
 app.get('/cadastrarUsuario', function (req, res) {
+  email('jstela.aluno@gmail.com', 'Assunto email', 'Funcionou');
   res.render('cadastroUsuario');
 });
 
 app.post('/cadastrarUsuario', function (req, res) {
-  const novo_usuario = new usuario(req.body.nome, req.body.username, req.body.senha, req.body.email);
-
-  const resultado = usuarioController.criarUsuario(novo_usuario);
+  (novo_usuario);
   resultado.then(resp => {
-    if (resp.length > 0) {
-      res.render('cadastroUsuario', { usuario: novo_usuario, mensagem: resp });
+    if (resp.length > 0){
+      res.render('cadastroUsuario', { usuario: novo_usuario, mensagem: resp});
     }else{
+      email(novo_usuario.email, 'Cadastro', 'Sua conta foi criada!');
       res.redirect('/listarUsuarios');
     }
   });
-
+  
 });
 
 app.post('/removerUsuario', function(req, res){
