@@ -3,10 +3,13 @@ const app = express();
 const port = 8086;
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
+const fileupload = require('express-fileuoload');
 
 const usuarioController = require('./controller/usuario.controller');
+const produtoController = require('./controller/produto.controller')
 const usuario = require('./entidades/usuario');
 const email = require('./config/email');
+const produto = require('./config/email');
 
 //Configuração do Handlebars (necessário a partir da rota #2)
 //Informa ao express qual template engine será usado
@@ -17,6 +20,10 @@ app.set('views', './views');
 //Configuração do body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//Configuração do express-fileupload
+app.use(fileupload());
+
 
 app.get('/', function(rerq, res){
   res.end();
@@ -51,6 +58,31 @@ app.post('/removerUsuario', function(req, res){
   const resultado =  usuarioController.removerUsuario(req.query.username);
   resultado.then(resp => {res.redirect('/listarUsuarios');});
 });
+
+
+//Rotas do Produto 
+
+app.get('/cadastrarProduto', function(req, res){
+  res.render('cadastroProduto')
+});
+
+app.post('/cadastrarProduto', function(req, res){
+  const novo_produto = new produto(req.body.nome, req.body.nome, req.body.valor, req.files.imagem);
+
+  const resultado = produtoController.cadastrarProduto(novo_produto);
+
+  resultado.then(resp => {
+    const extensao_imagem = req.files.imagem.name.split(".").pop();
+
+    req.files.imagem.mv(__dirname+'/imagens/'+resp+'.'+extensao_imagem);
+
+  });
+
+});
+
+
+// 
+
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}...`);
