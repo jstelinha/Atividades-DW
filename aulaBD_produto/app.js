@@ -65,7 +65,12 @@ app.post('/removerUsuario', function(req, res){
 
 
 app.get('/cadastrarProduto', function (req, res) {
-  res.render('cadastroProduto');
+  const resultados = produtoController.listarProdutos();
+
+  resultados.then(produtos => {
+    res.render('cadastroProduto', {produtos});
+  });
+
 });
 
 app.post('/cadastrarProduto', function(req, res){
@@ -74,7 +79,7 @@ app.post('/cadastrarProduto', function(req, res){
 
   const resultado = produtoController.cadastrarProduto(novo_produto);
   
-  res.end();
+  res.redirect('/cadastrarProduto');
 });
 
 app.listen(port, () => {

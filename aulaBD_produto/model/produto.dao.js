@@ -12,3 +12,9 @@ exports.cadastrarProduto = async function(novo_produto){
     //console.log(resposta)
     return resposta.rows[0].id_produto;
 }
+
+//Funçã listar produtos 
+exports.listarProdutos = async function(){
+    const {rows} = await db.query("SELECT * FROM produto")
+    return rows;
+}

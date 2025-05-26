@@ -12,3 +12,8 @@ exports.cadastrarProduto = async function(novo_produto){
 
     return true;
 }
+
+// função listar produtos 
+exports.listarProdutos = async function(){
+    return produtoDAO.listarProdutos();
+}
