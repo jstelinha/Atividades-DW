@@ -3,7 +3,7 @@ const app = express();
 const port = 8086;
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-const fileupload = require('express-fileuoload');
+const fileupload = require('express-fileupload');
 
 const usuarioController = require('./controller/usuario.controller');
 const produtoController = require('./controller/produto.controller')
