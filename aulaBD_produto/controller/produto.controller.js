@@ -17,3 +17,18 @@ exports.cadastrarProduto = async function(novo_produto){
 exports.listarProdutos = async function(){
     return produtoDAO.listarProdutos();
 }
+
+//
+
+// exports.buscarProdutoPorId = async function(id) {
+//     const produtos = await produtoDao.listarProdutos();
+//     return produtos.find(p => p.id_produto == id);
+//   };
+  
+//   exports.atualizarProduto = async function(id, produtoAtualizado) {
+//     await produtoDao.atualizarProduto(id, produtoAtualizado);
+//   };
+  
+//   exports.removerProduto = async function(id) {
+//     await produtoDao.removerProduto(id);
+//   };
