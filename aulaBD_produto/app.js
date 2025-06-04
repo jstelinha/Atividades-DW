@@ -70,7 +70,7 @@ app.get('/cadastrarProduto', function (req, res) {
   resultados.then(produtos => {
     res.render('cadastroProduto', {produtos});
   });
-
+  
 });
 
 app.post('/cadastrarProduto', function(req, res){
@@ -81,45 +81,6 @@ app.post('/cadastrarProduto', function(req, res){
   
   res.redirect('/cadastrarProduto');
 });
-
-//
-
-// // Formulário de edição de produto
-// app.get('/editarProduto/:id', function(req, res) {
-//   const id = req.params.id;
-//   const resultado = produtoController.buscarProdutoPorId(id);
-
-//   resultado.then(produto => {
-//     res.render('editarProduto', { produto });
-//   });
-// });
-
-// // Atualização do produto
-// app.post('/editarProduto/:id', function(req, res) {
-//   const id = req.params.id;
-//   const produtoAtualizado = new produto(
-//     req.body.nome,
-//     req.body.valor,
-//     req.files.imagem
-//   );
-
-//   const resultado = produtoController.atualizarProduto(id, produtoAtualizado);
-//   resultado.then(() => {
-//     res.redirect('/cadastrarProduto');
-//   });
-// });
-
-// // Remoção de produto
-// app.get('/removerProduto/:id', function(req, res) {
-//   const id = req.params.id;
-//   const resultado = produtoController.removerProduto(id);
-
-//   resultado.then(() => {
-//     res.redirect('/cadastrarProduto');
-//   });
-// });
-
-// //
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}...`);

@@ -13,29 +13,8 @@ exports.cadastrarProduto = async function(novo_produto){
     return resposta.rows[0].id_produto;
 }
 
-//Funçã listar produtos 
+//Função responsável por listar todos os produtos
 exports.listarProdutos = async function(){
     const {rows} = await db.query("SELECT * FROM produto")
     return rows;
 }
-
-
-// 
-
-// // Função para atualizar um produto existente
-// exports.atualizarProduto = async function(id, produtoAtualizado) {
-//     const extensao_arquivo = produtoAtualizado.imagem.name.split('.').pop();
-
-//     await db.query(
-//         'UPDATE produto SET nome = $1, valor = $2, imagem = $3 WHERE id_produto = $4',
-//         [produtoAtualizado.nome, produtoAtualizado.valor, extensao_arquivo, id]
-//     );
-// };
-
-// // Função para remover um produto
-// exports.removerProduto = async function(id) {
-//     await db.query(
-//         'DELETE FROM produto WHERE id_produto = $1',
-//         [id]
-//     );
-// };
